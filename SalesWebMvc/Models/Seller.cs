@@ -1,8 +1,6 @@
 ﻿using System;
-using SalesWebMvc.Models.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SalesWebMvc.Models
 {
@@ -29,7 +27,7 @@ namespace SalesWebMvc.Models
             BaseSalary = baseSalary;
             Department = department;
         }
-        
+
         public void AddSales(SalesRecord sr)
         {
             Sales.Add(sr);
@@ -40,7 +38,7 @@ namespace SalesWebMvc.Models
             Sales.Remove(sr);
         }
 
-        public double TotalSales (DateTime initial, DateTime final)
+        public double TotalSales(DateTime initial, DateTime final)
         {
             return Sales.Where(sr => sr.Date >= initial && sr.Date <= final).Sum(sr => sr.Amount);
         }

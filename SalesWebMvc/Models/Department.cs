@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SalesWebMvc.Models
 {
@@ -21,20 +20,13 @@ namespace SalesWebMvc.Models
             Name = name;
         }
 
-        public void AddSeller (Seller seller)
+        public void AddSeller(Seller seller)
         {
             Sellers.Add(seller);
         }
 
-        public double TotalSales (DateTime initial, DateTime final)
+        public double TotalSales(DateTime initial, DateTime final)
         {
-            /*double totalSales = 0;
-            foreach(Seller seller in sellers)
-            {
-                totalSales += seller.TotalSales(initial, final);
-            }
-            return totalSales; */
-
             return Sellers.Sum(seller => seller.TotalSales(initial, final));
         }
     }

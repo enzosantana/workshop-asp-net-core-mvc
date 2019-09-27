@@ -41,5 +41,48 @@ namespace SalesWebMvc.Controllers
             //Redirects back to index after the Create action is completed
             return RedirectToAction(nameof(Index));
         }
+
+        //This first Method calls the deletion view
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            //Its necessary to add .Value because id is a nullable (int? id in the method)
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        //This second method deletes the row (based on the parameters) from the database
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _sellerService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+
+       
     }
 }
